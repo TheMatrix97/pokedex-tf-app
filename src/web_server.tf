@@ -11,7 +11,7 @@ resource "aws_instance" "poke_app" {
     volume_type = "gp3"
   }
   tags = {
-    name = "pokeapp"
+    Name = "pokeapp"
   }
 }
 
