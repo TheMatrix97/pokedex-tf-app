@@ -5,9 +5,13 @@ resource "aws_instance" "poke_app" {
   associate_public_ip_address = true
   key_name = "vockey"
   user_data = file("init_script.sh")
+  iam_instance_profile = "LabInstanceProfile"
   root_block_device {
     volume_size = 20
     volume_type = "gp3"
+  }
+  tags = {
+    name = "pokeapp"
   }
 }
 
