@@ -16,14 +16,13 @@ sudo cp -r ./dist/pokedex/* /var/www/pokedex
 sudo apt-get -y install nginx
 
 # Config nginx 
-INSTANCE_EC2_DNS=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 
-cat << EOF > /etc/nginx/sites-available/$INSTANCE_EC2_DNS
+cat << EOF > /etc/nginx/sites-available/default
 server {
         listen 80;
         listen [::]:80;
         root /var/www/pokedex;
         index index.html index.htm index.nginx-debian.html;
-        server_name $INSTANCE_EC2_DNS;
+        server_name _;
         location / {
                 try_files \$uri \$uri/ /index.html;
         }
@@ -32,6 +31,5 @@ server {
         }
 }
 EOF
-ln -s /etc/nginx/sites-available/$INSTANCE_EC2_DNS /etc/nginx/sites-enabled/
 
 sudo service nginx restart
