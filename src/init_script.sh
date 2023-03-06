@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo apt-get update
+sudo apt-get -y upgrade
+
 # Download dist file PokeDex release
 wget https://github.com/TheMatrix97/pokedex-angular-app/releases/download/refs%2Fheads%2Fmaster/dist.tar.gz
 
@@ -10,7 +13,7 @@ sudo mkdir -p /var/www/pokedex
 sudo cp -r ./dist/pokedex/* /var/www/pokedex
 
 # Install nginx
-sudo apt-get update && sudo apt-get -y install nginx
+sudo apt-get -y install nginx
 
 # Config nginx 
 INSTANCE_EC2_DNS=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 
