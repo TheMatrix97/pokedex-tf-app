@@ -16,7 +16,7 @@ sudo cp -r ./dist/pokedex/* /var/www/pokedex
 sudo apt-get -y install nginx
 
 # Config nginx 
-cat << EOF > /etc/nginx/sites-available/default
+cat << EOT | sudo tee /etc/nginx/sites-available/default > /dev/null
 server {
         listen 80;
         listen [::]:80;
@@ -30,6 +30,6 @@ server {
             return 500;
         }
 }
-EOF
+EOT
 
 sudo service nginx restart
